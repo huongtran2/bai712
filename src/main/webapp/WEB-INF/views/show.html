@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button><a href="/create">Create</a></button>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th><a href="/clients?option=name">Name</a></th>
+        <th><a href="/clients?option=age">Age</a></th>
+        <th>Img</th>
+        <th>Type</th>
+    </tr>
+    <tr th:each="c,loop :${clients}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.age}"></td>
+        <td><img th:src="${c.img}" height="150" width="200"></td>
+        <td th:text="${c.type.name}"></td>
+    </tr>
+</table>
+
+<button th:if="${students.hasPrevious()}"><a th:href="@{/students(page=${students.number}-1,option =${option})}"><<<<<<</a></button>
+<b th:text="${students.number} + 1"></b> / <b th:text="${students.totalPages}"></b>
+<button th:if="${students.hasNext()}"><a th:href="@{/students(page=${students.number}+1,option =${option})}">>>>>>></a></button>
+
+</body>
+</html>
